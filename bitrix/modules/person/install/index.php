@@ -31,12 +31,14 @@ function InstallFiles($arParams = array())
 {
 //CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/dv_module/install/components",
 //             $_SERVER["DOCUMENT_ROOT"]."/bitrix/components", true, true);
+CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/person/install/admin", $_SERVER["DOCUMENT_ROOT"]."/bitrix/admin");
 return true;
 }
 
 function UnInstallFiles()
 {
 //DeleteDirFilesEx("/bitrix/components/dv");
+DeleteDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/person/install/admin", $_SERVER["DOCUMENT_ROOT"]."/bitrix/admin");
 return true;
 }
 
@@ -76,13 +78,17 @@ CREATE TABLE IF NOT EXISTS `Person` (
 
     ";
     
-    $dbRes = $DB->Query($sql);    
+    $dbRes = $DB->Query($sql); 
     
-    $sql = "
+    $sql = "ALTER TABLE `Person` ADD PRIMARY KEY (`id`);";
     
-DROP TABLE IF EXISTS `Group`;
-
-    ";
+    $dbRes = $DB->Query($sql);  
+    
+    $sql = "ALTER TABLE `Person` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;";
+    
+    $dbRes = $DB->Query($sql);       
+    
+    $sql = "DROP TABLE IF EXISTS `Group`;";
     
     $dbRes = $DB->Query($sql);    
     
@@ -96,6 +102,14 @@ CREATE TABLE IF NOT EXISTS `Group` (
     ";
     
     $dbRes = $DB->Query($sql);
+    
+    $sql = "ALTER TABLE `Group` ADD PRIMARY KEY (`id`);";
+    
+    $dbRes = $DB->Query($sql);  
+    
+    $sql = "ALTER TABLE `Group` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;";
+    
+    $dbRes = $DB->Query($sql); 
 
     $sql = "
 
