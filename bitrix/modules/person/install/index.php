@@ -29,7 +29,6 @@ $this->MODULE_DESCRIPTION = "Модуль для управления табли
 
 function InstallFiles($arParams = array())
 {
-<<<<<<< HEAD
 CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/person/install/admin", $_SERVER["DOCUMENT_ROOT"]."/bitrix/admin");
 CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/person/install/components",
             $_SERVER["DOCUMENT_ROOT"]."/bitrix/components", true, true);
