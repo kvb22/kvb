@@ -29,16 +29,17 @@ $this->MODULE_DESCRIPTION = "Модуль для управления табли
 
 function InstallFiles($arParams = array())
 {
-//CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/dv_module/install/components",
-//             $_SERVER["DOCUMENT_ROOT"]."/bitrix/components", true, true);
+<<<<<<< HEAD
 CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/person/install/admin", $_SERVER["DOCUMENT_ROOT"]."/bitrix/admin");
+CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/person/install/components",
+            $_SERVER["DOCUMENT_ROOT"]."/bitrix/components", true, true);
 return true;
 }
 
 function UnInstallFiles()
 {
-//DeleteDirFilesEx("/bitrix/components/dv");
 DeleteDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/person/install/admin", $_SERVER["DOCUMENT_ROOT"]."/bitrix/admin");
+DeleteDirFilesEx("/bitrix/components/person");
 return true;
 }
 
