@@ -119,10 +119,17 @@ $tabControl->Begin();
 <?
 
 $tabControl->BeginNextTab();
+$arSelectBox = CPerson::GroupSelectBox($str_group_id);
 ?>
 	<tr>
 		<td width="40%"><?echo 'Группа'?></td>
-		<td width="60%"><?echo CPerson::GroupSelectBox($str_group_id);?></td>
+		<td width="60%">
+            <select name="group_id">
+                <?foreach($arSelectBox as $k=>$v):?>
+                    <option value="<?=$k?>"<?echo($v['selected'] ? ' selected' : '');?>><?=$v['title']?></option>
+                <?endforeach;?>
+            </select>
+        </td>
 	</tr>
 	<tr class="adm-detail-required-field">
 		<td><?echo "Имя"?></td>

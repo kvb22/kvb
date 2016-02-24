@@ -143,12 +143,11 @@ class CPerson
         global $DB;
         $strSql = "SELECT * FROM `Group`";
         $res = $DB->Query($strSql, false, "File: ".__FILE__."<br>Line: ".__LINE__);
-        $strRet = '<select name="group_id">';
+        $arRet = array();
         while($res_arr = $res->Fetch()){
-            $strRet .= '<option value="'.$res_arr['id'].'"'. ($res_arr['id'] == $selected ? ' selected' : '') .'>'.$res_arr['title'].'</option>';
+            $arRet[$res_arr['id']] = array('title' => $res_arr['title'], 'selected' => ($res_arr['id'] == $selected ? true : false));
         }
-        $strRet .= "</select>";
-        return $strRet;
+        return $arRet;
     }
 
 }
